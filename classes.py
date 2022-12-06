@@ -104,6 +104,12 @@ class Game:
         self.gridToPlayY = 4
         self.movingNow = 'X'
 
+    # def mediumWon(self):
+    #     for x in self.table.grid:
+    #         if x.won:
+    #
+    #     pass
+
     def move(self):
         x, y = self.table \
             .grid[self.gridToPlayX - self.gridToPlayX % 3 + round((self.gridToPlayY - self.gridToPlayY % 3) / 3)] \
@@ -239,32 +245,7 @@ class Game:
     # TODO test if won medium and large grid
 
     def draw(self):
-        a = [
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-            [0, 0, 0, 1, 1, 1, 2, 2, 2],
-
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-            [3, 3, 3, 4, 4, 4, 5, 5, 5],
-
-            [6, 6, 6, 7, 7, 7, 8, 8, 8],
-            [6, 6, 6, 7, 7, 7, 8, 8, 8],
-            [6, 6, 6, 7, 7, 7, 8, 8, 8]
-        ]
-        b = [
-            [0, 1, 2, 0, 1, 2, 0, 1, 2],
-            [3, 4, 5, 3, 4, 5, 3, 4, 5],
-            [6, 7, 8, 6, 7, 8, 6, 7, 8],
-
-            [0, 1, 2, 0, 1, 2, 0, 1, 2],
-            [3, 4, 5, 3, 4, 5, 3, 4, 5],
-            [6, 7, 8, 6, 7, 8, 6, 7, 8],
-
-            [0, 1, 2, 0, 1, 2, 0, 1, 2],
-            [3, 4, 5, 3, 4, 5, 3, 4, 5],
-            [6, 7, 8, 6, 7, 8, 6, 7, 8]
-        ]
+        a = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
         for x in range(0, 9):
             row1 = ''
             row2 = ''
@@ -272,7 +253,7 @@ class Game:
             row4 = ''
 
             for y in range(0, 9):
-                _1, _2, _3, _4 = self.table.grid[a[x][y]].grid[b[x][y]].gridDraw()
+                _1, _2, _3, _4 = self.table.grid[a[round((x-1)/3)][y % 3]].grid[a[x % 3][round((y-1)/3)]].gridDraw()
 
                 row1 += _1
                 row2 += _2
